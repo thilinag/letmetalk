@@ -1,6 +1,15 @@
+:root {
+    --light-font: 'Archivo', sans-serif;
+    --heavy-font: 'Archivo Black', sans-serif;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var(--light-font);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: flex;
@@ -11,8 +20,22 @@ body {
     min-height: 100vh;
 }
 
-*, *:before, *:after {
-    box-sizing: border-box;
+button {
+    font-family: var(--heavy-font);
+    font-size: 1.5em;
+    border: 0;
+    padding: .5em 1em .5em .75em;
+    text-transform: uppercase;
+    border-radius: 5em;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(1.1);
+}
+
+button:focus {
+    outline: none;
 }
 
 @media (max-width: 768px ) {

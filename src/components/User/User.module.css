@@ -1,4 +1,5 @@
 .User {
+    font-family: var(--heavy-font);
     position: relative;
     padding: 1em 2em;
     opacity: 0.3;

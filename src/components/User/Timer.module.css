@@ -1,4 +1,4 @@
 .Timer {
-    font-family: monospace;
+    font-family: var(--light-font);
     opacity: .5;
 }

@@ -17,14 +17,7 @@
 }
 
 .cta {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 1.5em;
-    border: 0;
-    padding: .5em 1em .5em .75em;
-    text-transform: uppercase;
     background: paleturquoise;
-    border-radius: 5em;
-    cursor: pointer;
 }
 
 .ctaActive {
@@ -32,22 +25,13 @@
 }
 
 .leave {
-    font-family: 'Archivo Black', sans-serif;
     font-size: 1em;
-    border: 0;
     padding: .5em 1em;
-    text-transform: uppercase;
     background: lightgrey;
     color: gray;
-    border-radius: 5em;
-    cursor: pointer;
     position: absolute;
     top: 1em;
     right: 1em;
-}
-
-button:focus {
-    outline: none;
 }
 
 small {
