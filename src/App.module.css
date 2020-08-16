@@ -1,0 +1,91 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.message {
+    font-size: 2em;
+    color: lightgray;
+}
+
+.queue {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cta {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.5em;
+    border: 0;
+    padding: .5em 1em .5em .75em;
+    text-transform: uppercase;
+    background: paleturquoise;
+    border-radius: 5em;
+    cursor: pointer;
+}
+
+.ctaActive {
+    background: lightsalmon;
+}
+
+.leave {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1em;
+    border: 0;
+    padding: .5em 1em;
+    text-transform: uppercase;
+    background: lightgrey;
+    color: gray;
+    border-radius: 5em;
+    cursor: pointer;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
+
+button:focus {
+    outline: none;
+}
+
+small {
+    padding-top: 1em;
+    color: lightgrey;
+    font-size: 1em;
+    display: block;
+    text-align: center;
+}
+
+.footer {
+    margin-top: 3em;
+}
+
+@media (max-width: 768px ) {
+    .queue {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        padding: 1em;
+    }
+    
+    .cta {
+        width: calc(100%);
+    }
+
+    small {
+        display: none;
+    }
+
+    :global(body) {
+        min-height: auto;
+    }
+}

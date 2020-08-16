@@ -1,0 +1,42 @@
+.User {
+    position: relative;
+    padding: 1em 2em;
+    opacity: 0.3;
+    word-break: break-word;
+    text-align: center;
+}
+
+.UserQueued {
+    opacity: 1;
+}
+
+.name {
+    font-size: 3em;
+    text-transform: uppercase;
+}
+
+.queued {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: -.5em;
+    right: -.5em;
+    background: peachpuff;
+    padding: .5em;
+    font-size: 1.5em;
+    border-radius: 5em;
+    font-style: normal;
+}
+
+.queued:before {
+    content: '✋';
+    animation: wave 0.4s alternate infinite;
+    animation-timing-function: ease-in-out;
+    transform-origin: bottom center;
+    margin-right: .25em;
+}
+
+@keyframes wave {
+    0% {transform: rotate(-20deg);}
+    100% {transform: rotate(20deg);}
+}
