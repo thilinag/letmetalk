@@ -20,7 +20,7 @@ const App = () => {
     
     return (
         <div className={classes.App}>
-            {user && queue.length === 0 &&
+            {queue.length === 0 &&
                 <p className={classes.message}>No one is waiting to talk at the moment.</p>
             }
             <div className={classes.queue}>
@@ -44,12 +44,12 @@ const App = () => {
                 }
                 {!user &&
                     <button 
+                        autoFocus={true} 
                         className={classes.cta}
                         type="button"
                         onClick={handleJoin}>
                         Join
                     </button>
-                        
                 }
             </div>
             {user &&

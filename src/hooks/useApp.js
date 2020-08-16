@@ -1,12 +1,11 @@
 import {useEffect, useState, useCallback, useRef } from 'react';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import database from '../firebase';
 
 export const useApp = () => {
     const [user, setUser] = useState(null);
     const [queuedToTalk, setQueuedToTalk] = useState(false);
     const [queue, setQueue] = useState([]);
-    //const queueRef = database.collection('queue');
     const buttonRef = useRef();
     
     useEffect(() => {
@@ -29,17 +28,6 @@ export const useApp = () => {
             };
         }
     }, [user, queue]);
-
-    const handleUserKeyPress = useCallback(event => {
-        const { keyCode } = event;
-
-        if (keyCode === 32) {
-            console.log(document.activeElement !== buttonRef.current);
-            if(document.activeElement !== buttonRef.current) {
-                buttonRef.current.click();
-            }
-        }
-    }, []);
     
     const handleJoin = useCallback(() => {
         let name = localStorage.getItem('name');
@@ -62,7 +50,7 @@ export const useApp = () => {
         }
     }, [setUser]);
     
-    const handleLeave = useCallback(() => {
+    const handleLeave = useCallback((removeLocalStorage = true) => {
         if(!user) {
             return;
         }
@@ -77,24 +65,41 @@ export const useApp = () => {
     }, [user])
 
     const handleWantToTalk = useCallback(() => {
-        console.log(user, queuedToTalk);
         if(!user) {
             return;
         }
-        //
+
         const payload = {
             name: user,
             queuedAt: !queuedToTalk ? firebase.firestore.FieldValue.serverTimestamp() : ''
         }
-        console.log(payload);
+
         setQueuedToTalk(!queuedToTalk);
         database.collection('queue').doc(user).set({...payload});
     }, [user, queuedToTalk, setQueuedToTalk]);
 
+    const handleUserKeyPress = useCallback(event => {
+        const { keyCode } = event;
+
+        if (keyCode === 32) {
+            if(document.activeElement !== buttonRef.current) {
+                handleWantToTalk()
+            }
+        }
+    }, [handleWantToTalk]);
+
+    const handleWindowUnload = useCallback((e) => {
+        e.preventDefault();
+        if (user) {
+            database.collection('queue').doc(user).delete()
+        }
+    }, [user]);
+
     useEffect(() => {
         window.addEventListener('keydown', handleUserKeyPress);
+        window.addEventListener('beforeunload', handleWindowUnload);
         handleJoin();
-    }, [handleUserKeyPress, handleJoin]);
+    }, [handleUserKeyPress, handleWindowUnload, handleJoin]);
     
     return {
         user,
